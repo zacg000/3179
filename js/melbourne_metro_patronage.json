@@ -1,0 +1,126 @@
+{
+  "title": "Melbourne Metro Train Station Patronage (2024-25 Financial Year)",
+  "width": 600,
+  "height": 500,
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/greater_melbourne.topojson",
+        "format": {"type": "topojson", "feature": "greater_melbourne"}
+      },
+      "projection": {"type": "mercator"},
+      "mark": {"type": "geoshape", "fill": "aliceblue", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/data/annual_metropolitan_train_station_entries_fy_2024_2025.csv",
+        "format": {"type": "csv"}
+      },
+      "mark": {"type": "circle"},
+      "encoding": {
+        "latitude": {"field": "Stop_lat", "type": "quantitative"},
+        "longitude": {"field": "Stop_long", "type": "quantitative"},
+        "size": {
+          "field": "Pax_annual",
+          "type": "quantitative",
+          "title": "Annual Patronage",
+          "scale": {"type": "sqrt", "domain": [0, 20000000]}
+        },
+        "color": {
+          "field": "Pax_weekday",
+          "type": "quantitative",
+          "title": "Weekday Patronage",
+          "scale": {"scheme": "bluegreen"}
+        },
+        "tooltip": [
+          {"field": "Stop_name", "title": "Train Station"},
+          {"field": "Pax_annual", "title": "Annual Patronage", "format": ","},
+          {"field": "Pax_weekday", "title": "Weekday Patronage", "format": ","},
+          {
+            "field": "Pax_norm_weekday",
+            "title": "Non School Holiday Weekday Patronage",
+            "format": ","
+          },
+          {
+            "field": "Pax_sch_hol_weekday",
+            "title": "School Holiday Weekday Patronage",
+            "format": ","
+          },
+          {
+            "field": "Pax_Saturday",
+            "title": "Saturday Patronage",
+            "format": ","
+          },
+          {"field": "Pax_Sunday", "title": "Sunday Patronage", "format": ","},
+          {
+            "field": "Pax_pre_AM_peak",
+            "title": "Patronage before Morning Peak",
+            "format": ","
+          },
+          {
+            "field": "Pax_AM_peak",
+            "title": "Morning Peak Patronage",
+            "format": ","
+          },
+          {
+            "field": "Pax_interpeak",
+            "title": "Interpeak Patronage",
+            "format": ","
+          },
+          {
+            "field": "Pax_PM_peak",
+            "title": "Evening Peak Patronage",
+            "format": ","
+          },
+          {
+            "field": "Pax_PM_late",
+            "title": "Late Night Patronage",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/ne_10m_graticules_1.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_graticules_1"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "lightgray",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -37.473501,
+            "lon": 145.8,
+            "lat2": -37.473501,
+            "lon2": 145.91319
+          }
+        ]
+      },
+      "mark": {"type": "rule", "strokeWidth": 3, "color": "black"},
+      "encoding": {
+        "latitude": {"field": "lat"},
+        "latitude2": {"field": "lat2"},
+        "longitude": {"field": "lon"},
+        "longitude2": {"field": "lon2"}
+      }
+    },
+    {
+      "data": {"values": [{"lat": -37.47, "lon": 145.85, "label": "10 km"}]},
+      "mark": {"type": "text", "align": "center", "baseline": "bottom"},
+      "encoding": {
+        "latitude": {"field": "lat"},
+        "longitude": {"field": "lon"},
+        "text": {"field": "label"}
+      }
+    }
+  ],
+  "config": {}
+}
