@@ -1,0 +1,48 @@
+{
+  "type": "Topology",
+  "arcs": [[[196632, 69010], [-28001, 0]], [[168631, 69010], [-49703, 0], [-50297, 0]], [[68631, 69010], [-68631, 0]], [[168631, 0], [0, 69010]], [[168631, 69010], [0, 79198]], [[68631, 0], [0, 69010]], [[68631, 69010], [0, 79198]]],
+  "transform": {
+    "scale": [0.000009999995100819235, 0.0000099999749597125],
+    "translate": [144.3106548550254, -38.690516290194296]
+  },
+  "objects": {
+    "ne_10m_graticules_1": {
+      "type": "GeometryCollection",
+      "geometries": [
+        {
+          "type": "LineString",
+          "arcs": [0, 1, 2],
+          "properties": {
+            "degrees": 38,
+            "direction": "S",
+            "display": "38 S",
+            "scalerank": 6,
+            "dd": -38
+          }
+        },
+        {
+          "type": "LineString",
+          "arcs": [3, 4],
+          "properties": {
+            "degrees": 146,
+            "direction": "E",
+            "display": "146 E",
+            "scalerank": 6,
+            "dd": 146
+          }
+        },
+        {
+          "type": "LineString",
+          "arcs": [5, 6],
+          "properties": {
+            "degrees": 145,
+            "direction": "E",
+            "display": "145 E",
+            "scalerank": 6,
+            "dd": 145
+          }
+        }
+      ]
+    }
+  }
+}
