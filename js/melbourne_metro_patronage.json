@@ -31,7 +31,7 @@
           "field": "Pax_weekday",
           "type": "quantitative",
           "title": "Weekday Patronage",
-          "scale": {"scheme": "bluegreen"}
+          "scale": {"type": "sqrt", "scheme": "bluegreen"}
         },
         "tooltip": [
           {"field": "Stop_name", "title": "Train Station"},
