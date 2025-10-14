@@ -1,27 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <meta charset="utf-8">
+  <title>Vega-Lite Dashboard</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" 
+        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" 
+        crossorigin="anonymous">
+
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-  
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+    }
 
+    .header-container {
+      position: relative;
+      width: 100%;
+      height: 25vh;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .header-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+
+    .header-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 20px 40px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 28px;
+      word-wrap: break-word;
+    }
+
+    .vis-container {
+      width: 100%;
+      min-height: 400px;
+      margin-bottom: 30px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .pure-u-1-2 {
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+    
+    .pure-g {
+      margin: 0 -10px;
+    }
+  </style>
 </head>
 <body>
-  
-<div id="melbourne_metro_patronage"></div>
 
-<script type="text/javascript">
+  <div class="header-container">
+    <img src="css/flinders.jpg" alt="Flinders Street Station" class="header-image">
+    <div class="header-text">
+      <h1>
+        Comparing Melbourne's 
+        <span style="color:green;">Train</span> 
+        and 
+        <span style="color:red;">Tram</span> 
+        Networks
+      </h1>
+    </div>
+  </div>
 
-  var spec2 = "js/melbourne_metro_patronage.json";
-  vegaEmbed('#melbourne_metro_patronage', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+  <div style="max-width: 120vw; margin: 30px auto 30px auto; background: #f9f9f9; border-radius: 8px; padding: 24px;">
+  <p style="font-size: 1.0em; line-height: 1.6; margin: 0; color: #333;">
+    Melbourne boasts a comprehensive public transport system, with both trams and trains playing major roles in connecting suburbs to the inner city and beyond. Trams are heavily used for short and medium distance travel within the inner city and surrounding suburbs, featuring frequent stops and integration with regular street traffic. Conversely, trains serve as Melbourne’s backbone for long distance commuter travel, running on separate heavy rail tracks between dedicated stations spaced further apart, allowing for faster journeys over greater distances. This visualisation seeks to explore these differences between Melbourne’s tram and train networks, highlighting the divide between inner/middle Melbourne and Melbourne’s outer suburbs regarding public transport usage and availability.
+  </p>
+</div>
+
+  <div class="pure-g">
+    <!-- Row 1 -->
+    <div class="pure-u-1-2">
+      <div id="vis1" class="vis-container"></div>
+    </div>
+    <div class="pure-u-1-2">
+      <div id="vis2" class="vis-container"></div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="pure-u-1-2">
+      <div id="vis3" class="vis-container"></div>
+    </div>
+    <div class="pure-u-1-2">
+      <div id="vis4" class="vis-container"></div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="pure-u-1-2">
+      <div id="vis5" class="vis-container"></div>
+    </div>
+    <div class="pure-u-1-2">
+      <div id="vis6" class="vis-container"></div>
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    const specs = [
+      "js/melbourne_metro_patronage.json",
+      "js/melbourne_tram_patronage.json",
+      "js/train_patronage_by_LGA.json",
+      "js/tram_patronage_by_LGA.json",
+      "js/ratio_patronage_by_LGA.json",
+      "js/scatterplot_tram_train.json"
+    ];
+
+    specs.forEach((spec, i) => {
+      vegaEmbed('#vis' + (i + 1), spec, {
+        actions: false,
+        renderer: 'canvas'
+      }).catch(console.error);
+    });
+  </script>
 
 </body>
 </html>
