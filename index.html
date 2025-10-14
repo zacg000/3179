@@ -17,6 +17,7 @@
       margin: 0;
       padding: 20px;
       font-family: sans-serif;
+      overflow-x: hidden;
     }
 
     .header-container {
@@ -43,6 +44,7 @@
       padding: 20px 40px;
       border-radius: 10px;
       text-align: center;
+      max-width: 90%;
     }
 
     .header-text h1 {
@@ -51,12 +53,38 @@
       word-wrap: break-word;
     }
 
+    .description-box {
+      max-width: 1200px;
+      margin: 30px auto;
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .description-box p {
+      font-size: 1.0em;
+      line-height: 1.6;
+      margin: 0;
+      color: #333;
+    }
+
+    .dashboard-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
     .vis-container {
       width: 100%;
       min-height: 400px;
       margin-bottom: 30px;
       padding: 10px;
       box-sizing: border-box;
+      overflow: visible;
+    }
+    
+    .vis-container > div {
+      overflow: visible !important;
     }
 
     .pure-u-1-2 {
@@ -66,6 +94,16 @@
     
     .pure-g {
       margin: 0 -10px;
+    }
+
+    @media (max-width: 768px) {
+      .pure-u-1-2 {
+        width: 100%;
+      }
+      
+      .header-text h1 {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
@@ -84,37 +122,38 @@
     </div>
   </div>
 
-  <div style="max-width: 120vw; margin: 30px auto 30px auto; background: #f9f9f9; border-radius: 8px; padding: 24px;">
-  <p style="font-size: 1.0em; line-height: 1.6; margin: 0; color: #333;">
-    Melbourne boasts a comprehensive public transport system, with both trams and trains playing major roles in connecting suburbs to the inner city and beyond. Trams are heavily used for short and medium distance travel within the inner city and surrounding suburbs, featuring frequent stops and integration with regular street traffic. Conversely, trains serve as Melbourne’s backbone for long distance commuter travel, running on separate heavy rail tracks between dedicated stations spaced further apart, allowing for faster journeys over greater distances. This visualisation seeks to explore these differences between Melbourne’s tram and train networks, highlighting the divide between inner/middle Melbourne and Melbourne’s outer suburbs regarding public transport usage and availability.
-  </p>
-</div>
+  <div class="description-box">
+    <p>
+      Melbourne boasts a comprehensive public transport system, with both trams and trains playing major roles in connecting suburbs to the inner city and beyond. Trams are heavily used for short and medium distance travel within the inner city and surrounding suburbs, featuring frequent stops and integration with regular street traffic. Conversely, trains serve as Melbourne's backbone for long distance commuter travel, running on separate heavy rail tracks between dedicated stations spaced further apart, allowing for faster journeys over greater distances. This visualisation seeks to explore these differences between Melbourne's tram and train networks, highlighting the divide between inner/middle Melbourne and Melbourne's outer suburbs regarding public transport usage and availability.
+    </p>
+  </div>
 
-  <div class="pure-g">
-    <!-- Row 1 -->
-    <div class="pure-u-1-2">
-      <div id="vis1" class="vis-container"></div>
-    </div>
-    <div class="pure-u-1-2">
-      <div id="vis2" class="vis-container"></div>
-    </div>
+  <div class="dashboard-container">
+    <div class="pure-g">
+      <!-- Row 1 -->
+      <div class="pure-u-1-2">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div id="vis2" class="vis-container"></div>
+      </div>
 
-    <!-- Row 2 -->
-    <div class="pure-u-1-2">
-      <div id="vis3" class="vis-container"></div>
-    </div>
-    <div class="pure-u-1-2">
-      <div id="vis4" class="vis-container"></div>
-    </div>
+      <!-- Row 2 -->
+      <div class="pure-u-1-2">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div id="vis4" class="vis-container"></div>
+      </div>
 
-    <!-- Row 3 -->
-    <div class="pure-u-1-2">
-      <div id="vis5" class="vis-container"></div>
+      <!-- Row 3 -->
+      <div class="pure-u-1-2">
+        <div id="vis5" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div id="vis6" class="vis-container"></div>
+      </div>
     </div>
-    <div class="pure-u-1-2">
-      <div id="vis6" class="vis-container"></div>
-    </div>
-
   </div>
 
   <script type="text/javascript">
@@ -130,7 +169,13 @@
     specs.forEach((spec, i) => {
       vegaEmbed('#vis' + (i + 1), spec, {
         actions: false,
-        renderer: 'canvas'
+        renderer: 'canvas',
+        config: {
+          autosize: {
+            type: 'fit',
+            contains: 'padding'
+          }
+        }
       }).catch(console.error);
     });
   </script>
