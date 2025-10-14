@@ -1,0 +1,94 @@
+{
+  "title": "Tram to Train Usage by LGA",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 600,
+  "height": 500,
+
+  "layer": [
+    {
+      "data": {"url":"https://raw.githubusercontent.com/zacg000/3179/main/data/melbourne_lga_train_tram_patronage.csv"},
+      "mark": {"type": "circle"},
+      "encoding": {
+        "x": {"field": "Pax_annual",
+        "type": "quantitative"  , 
+        "title":  "Annual Train Patronage",
+        "scale": {"type":"sqrt"}},
+        "y": {"field": "tram_total_patronage",
+        "type": "quantitative", 
+        "title":  "Annual Tram Patronage",
+        "scale": {"type":"sqrt"}},
+        "color": {
+            "field": "region_type",
+            "title": "LGA Type",
+            "type": "nominal",
+            "scale": {"scheme": "dark2"}
+        },
+        "tooltip": [
+          {"field": "LGA_NAME", "title": "Local Government Area"},
+          {"field": "Pax_annual", "title": "Annual Train Patronage", "format": ","},
+          {"field": "tram_total_patronage", "title": "Annual Tram Patronage", "format": ","}
+        ]
+      }
+    },
+    {
+      "data": {"url":"https://raw.githubusercontent.com/zacg000/3179/main/data/melbourne_lga_train_tram_patronage.csv"},
+      "transform": [
+        {"filter": "datum.LGA_NAME == 'Melbourne'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -380,
+        "dy": 10,
+        "fontSize": 11,
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {"field": "Pax_annual", "type": "quantitative", "scale": {"type":"sqrt"}},
+        "y": {"field": "tram_total_patronage", "type": "quantitative", "scale": {"type":"sqrt"}},
+        "text": {"value": "The City of Melbourne is the clear leader in public transport usage,\n recording the highest patronage for both tram and train services across\n all Greater Melbourne LGAs. This reflects Melbourne's role as the heart of the\n metropolitan area. The densest concentration of employment, entertainment,\n and services, alongside converging train and tram lines naturally drives demand for\n public transport in the city."}
+      }
+    },
+    {
+      "data": {"url":"https://raw.githubusercontent.com/zacg000/3179/main/data/melbourne_lga_train_tram_patronage.csv"},
+      "transform": [
+        {"filter": "datum.LGA_NAME == 'Manningham'"},
+        {"calculate": "datum.Pax_annual", "as": "x1"},
+        {"calculate": "datum.tram_total_patronage", "as": "y1"},
+        {"calculate": "datum.Pax_annual + 400000", "as": "x2"},
+        {"calculate": "datum.tram_total_patronage + 21000000", "as": "y2"}
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeDash": [4, 2],
+        "color": "gray"
+      },
+      "encoding": {
+        "x": {"field": "x1", "type": "quantitative", "scale": {"type":"sqrt"}},
+        "y": {"field": "y1", "type": "quantitative", "scale": {"type":"sqrt"}},
+        "x2": {"field": "x2"},
+        "y2": {"field": "y2"}
+      }
+    },
+    {
+      "data": {"url":"https://raw.githubusercontent.com/zacg000/3179/main/data/melbourne_lga_train_tram_patronage.csv"},
+      "transform": [
+        {"filter": "datum.LGA_NAME == 'Manningham'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -280,
+        "fontSize": 11,
+        "lineBreak": "\n"
+      },
+
+      "encoding": {
+        "x": {"field": "Pax_annual", "type": "quantitative", "scale": {"type":"sqrt"}},
+        "y": {"field": "tram_total_patronage", "type": "quantitative", "scale": {"type":"sqrt"}},
+        "text": {"value": "The City of Manningham is the only LGA\nin Greater Melbourne without either\na tram or train line. Despite long standing and\nunrealised plans for rail extensions into\nthe area, buses are currently the only form of\n public transport in Manningham."}
+      }
+    }
+  ]
+}

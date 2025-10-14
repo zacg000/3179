@@ -117,13 +117,21 @@
           "field": "Pax_annual",
           "type": "quantitative",
           "title": "Annual Patronage",
-          "scale": {"type": "sqrt", "domain": [0, 20000000]}
+          "scale": {"type": "sqrt", "domain": [0, 20000000]},
+          "legend": {
+            "orient": "left",
+            "labelAlign": "left",
+            "titleAlign": "left"
+          }
         },
         "color": {
           "field": "SelectedColorField",
           "type": "quantitative",
           "scale": {"scheme": "bluegreen"},
-          "legend": {"title": {"signal": "legendTitle"}}
+          "legend": {"title": {"signal": "legendTitle"},
+            "orient": "left",
+            "labelAlign": "left",
+            "titleAlign": "left"}
         },
         "tooltip": [
           {"field": "Stop_name", "title": "Train Station"},

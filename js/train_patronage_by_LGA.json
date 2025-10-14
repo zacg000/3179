@@ -1,0 +1,95 @@
+{
+  "title": "Melbourne Train Station Patronage by LGA (2024-25 Financial Year)",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 600,
+  "height": 500,
+  "projection": {
+    "type": "mercator",
+    "center": [145, -37.81],
+    "scale": 19000
+  },
+  "layer": [
+    {
+      "data": {"sphere": true},
+      "mark": {"type": "geoshape", "fill": "#a3cdff"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/STE_2021_AUST_GDA2020.json",
+        "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
+      },
+      "mark": {"type": "geoshape", "fill": "#cfe0aa", "stroke": "black", "strokeWidth": 0.5}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/zacg000/3179/main/js/greater_melbourne_LGA.json",
+        "format": {"type": "topojson", "feature": "greater_melbourne_LGA_titlecase"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.LGA_NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/zacg000/3179/main/data/melbourne_lga_train_tram_patronage.csv"
+            },
+            "key": "LGA_NAME",
+            "fields": ["Pax_annual"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 0.4},
+      "encoding": {
+        "color": {
+          "field": "Pax_annual",
+          "type": "quantitative",
+          "scale": {"scheme": "bluegreen", "type": "sqrt"},
+          "title": "Train Patronage",
+          "legend": {
+            "orient": "left",
+            "labelAlign": "left",
+            "titleAlign": "left"
+          }
+        },
+        "tooltip": [
+          {"field": "properties.LGA_NAME", "title": "LGA"},
+          {"field": "Pax_annual", "title": "Annual Train Patronage", "format": ","}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -37.373501,
+            "lon": 145.55,
+            "lat2": -37.373501,
+            "lon2": 145.66319
+          }
+        ]
+      },
+      "mark": {"type": "rule", "strokeWidth": 3, "color": "black"},
+      "encoding": {
+        "latitude": {"field": "lat"},
+        "latitude2": {"field": "lat2"},
+        "longitude": {"field": "lon"},
+        "longitude2": {"field": "lon2"}
+      }
+    },
+    {
+      "data": {"values": [{"lat": -37.37, "lon": 145.605, "label": "10 km"}]},
+      "mark": {"type": "text", "align": "center", "baseline": "bottom"},
+      "encoding": {
+        "latitude": {"field": "lat"},
+        "longitude": {"field": "lon"},
+        "text": {"field": "label"}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/ne_10m_graticules_1.json",
+        "format": {"type": "topojson", "feature": "ne_10m_graticules_1"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "grey", "strokeWidth": 0.5}
+    }
+  ]
+}
