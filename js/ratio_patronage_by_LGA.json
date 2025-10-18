@@ -18,7 +18,7 @@
         "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/STE_2021_AUST_GDA2020.json",
         "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
       },
-      "mark": {"type": "geoshape", "fill": "#cfe0aa", "stroke": "black", "strokeWidth": 0.5}
+      "mark": {"type": "geoshape", "fill": "#d9d9d9", "stroke": "black", "strokeWidth": 0.5}
     },
     {
       "data": {
@@ -40,13 +40,21 @@
       "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 0.4},
       "encoding": {
         "color": {
-        "condition": {
-            "test": "datum.tram_to_train_ratio == 0",
-            "value": "#006636"},
         "field": "tram_to_train_ratio",
         "type": "quantitative",
-        "scale": {"scheme": "redyellowgreen", "reverse": true, "type": "log", "domain": [0.01, 14]},
-        "title": "Tram to Train Usage Ratio",
+        "scale": {
+            "type": "threshold",
+            "domain": [0.25, 1, 1.5, 2, 5, 10],
+            "range": [
+              "#1a9850",
+              "#a6d96a",
+              "#fee08b",  
+              "#f46d43", 
+              "#d73027",  
+              "#a50026",  
+              "#67000d"  ]
+          },
+        "title": "Usage of Trams per Train",
         "legend": {
             "orient": "left",
             "labelAlign": "left",

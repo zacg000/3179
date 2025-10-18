@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Total Tram vs Train Patronage"
+  },
+  "width": 200,
+  "height": 200,
+  "config": {
+    "view": {"strokeWidth": 0},
+    "padding": 5
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/zacg000/3179/main/data/melbourne_lga_train_tram_patronage.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {"op": "sum", "field": "tram_total_patronage", "as": "total_tram"},
+        {"op": "sum", "field": "Pax_annual", "as": "total_train"}
+      ]
+    },
+    {
+      "fold": ["total_tram", "total_train"],
+      "as": ["transport_type", "patronage"]
+    },
+    {
+      "calculate": "datum.transport_type == 'total_tram' ? 'Tram' : 'Train'",
+      "as": "Transport Mode"
+    },
+    {
+      "joinaggregate": [
+        {"op": "sum", "field": "patronage", "as": "total_patronage"}
+      ]
+    },
+    {
+      "calculate": "(datum.patronage / datum.total_patronage) * 100",
+      "as": "percentage"
+    },
+    {
+      "calculate": "format(datum.percentage, '.2f') + '%'",
+      "as": "percentage_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "arc"
+      },
+      "encoding": {
+        "theta": {
+          "field": "patronage",
+          "type": "quantitative",
+          "stack": true
+        },
+        "color": {
+          "field": "Transport Mode",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Tram", "Train"],
+            "range": ["#c21a17", "#268f4d"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "Transport Mode",
+            "type": "nominal"
+          },
+          {
+            "field": "patronage",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Total Patronage"
+          },
+          {
+            "field": "percentage",
+            "type": "quantitative",
+            "format": ".2f",
+            "title": "Percentage (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radius": 40,
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "fill": "white"
+      },
+      "encoding": {
+        "theta": {
+          "field": "patronage",
+          "type": "quantitative",
+          "stack": true
+        },
+        "text": {
+          "field": "percentage_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

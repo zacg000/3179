@@ -6,9 +6,17 @@
   "projection": {
     "type": "mercator",
     "center": [144.96, -37.81],
-    "scale": 19000
+    "scale": {"signal": "zoomLevel"}
   },
   "params": [
+        {"name": "zoomLevel",
+        "value": 120000,
+        "bind": {
+        "input": "range",
+        "min": 10000,
+        "max": 300000,
+        "step": 5000,
+        "name": "Zoom Level: "}},
     {
       "name": "colorField",
       "value": "Pax_weekday",
@@ -30,7 +38,7 @@
         "labels": [
           "Annual Patronage",
           "Weekday Patronage",
-          "Non School Holiday Weekday",
+          "School Weekday",
           "School Holiday Weekday",
           "Saturday Patronage",
           "Sunday Patronage",
@@ -45,7 +53,7 @@
     },
     {
       "name": "legendTitle",
-      "expr": "({'Pax_annual':'Annual Patronage','Pax_weekday':'Weekday Patronage','Pax_norm_weekday':'Non School Holiday Weekday','Pax_sch_hol_weekday':'School Holiday Weekday','Pax_Saturday':'Saturday Patronage','Pax_Sunday':'Sunday Patronage','Pax_pre_AM_peak':'Pre Morning Peak','Pax_AM_peak':'Morning Peak','Pax_interpeak':'Interpeak','Pax_PM_peak':'Evening Peak','Pax_PM_late':'Late Night'})[colorField]"
+      "expr": "({'Pax_annual':'Annual Patronage','Pax_weekday':'Weekday Patronage','Pax_norm_weekday':'School Weekday','Pax_sch_hol_weekday':'School Holiday Weekday','Pax_Saturday':'Saturday Patronage','Pax_Sunday':'Sunday Patronage','Pax_pre_AM_peak':'Pre Morning Peak','Pax_AM_peak':'Morning Peak','Pax_interpeak':'Interpeak','Pax_PM_peak':'Evening Peak','Pax_PM_late':'Late Night'})[colorField]"
     }
   ],
   "layer": [
@@ -61,7 +69,7 @@
         "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/STE_2021_AUST_GDA2020.json",
         "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
       },
-      "mark": {"type": "geoshape", "fill": "#cfe0aa", "stroke": "black", "strokeWidth": 0.5}
+      "mark": {"type": "geoshape", "fill": "#d9d9d9", "stroke": "black", "strokeWidth": 0.5}
     },
     {
       "data": {
@@ -93,10 +101,10 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/greater_melbourne.topojson",
+        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/greater_melbourne_LGA.topojson",
         "format": {"type": "topojson", "feature": "greater_melbourne"}
       },
-      "mark": {"type": "geoshape", "fill": "#efe8d4", "stroke": "black", "strokeWidth": 0.5}
+      "mark": {"type": "geoshape", "fill": "#efe8d4", "stroke": "grey", "strokeDash": [4, 2], "strokeWidth": 0.5}
     },
     {
       "data": {
@@ -117,11 +125,15 @@
           "field": "Pax_annual",
           "type": "quantitative",
           "title": "Annual Patronage",
-          "scale": {"type": "sqrt", "domain": [0, 20000000]},
+          "scale": {
+            "type": "threshold",
+            "domain": [250000, 1000000, 5000000, 10000000],
+            "range": [20, 100, 200, 400, 550]},
           "legend": {
             "orient": "left",
             "labelAlign": "left",
-            "titleAlign": "left"
+            "titleAlign": "left",
+            "format": ","
           }
         },
         "color": {

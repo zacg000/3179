@@ -6,8 +6,17 @@
   "projection": {
     "type": "mercator",
     "center": [145, -37.81],
-    "scale": 80000
+    "scale": {"signal": "zoomLevel"}
   },
+  "params": [
+        {"name": "zoomLevel",
+        "value": 78000,
+        "bind": {
+        "input": "range",
+        "min": 5000,
+        "max": 300000,
+        "step": 1000,
+        "name": "Zoom Level: "}}],
   "layer": [
     {
       "data": {
@@ -20,14 +29,14 @@
         "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/STE_2021_AUST_GDA2020.json",
         "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
       },
-      "mark": {"type": "geoshape", "fill": "#cfe0aa", "stroke": "black", "strokeWidth": 0.5}
+      "mark": {"type": "geoshape", "fill": "#d9d9d9", "stroke": "black", "strokeWidth": 0.5}
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/greater_melbourne.topojson",
+        "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/greater_melbourne_LGA.topojson",
         "format": {"type": "topojson", "feature": "greater_melbourne"}
       },
-      "mark": {"type": "geoshape", "fill": "#efe8d4", "stroke": "black", "strokeWidth": 0.5}
+      "mark": {"type": "geoshape", "fill": "#efe8d4", "stroke": "grey", "strokeDash": [4, 2], "strokeWidth": 0.5}
     },
     {
       "data": {
@@ -69,9 +78,9 @@
         "values": [
           {
             "lat": -37.685,
-            "lon": 145.08,
+            "lon": 145.1,
             "lat2": -37.685,
-            "lon2": 145.19319
+            "lon2": 145.156595
           }
         ]
       },
@@ -84,7 +93,7 @@
       }
     },
     {
-      "data": {"values": [{"lat": -37.68, "lon": 145.14, "label": "10 km"}]},
+      "data": {"values": [{"lat": -37.682, "lon": 145.126, "label": "5 km"}]},
       "mark": {"type": "text", "align": "center", "baseline": "bottom"},
       "encoding": {
         "latitude": {"field": "lat"},

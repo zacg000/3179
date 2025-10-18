@@ -18,7 +18,7 @@
         "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/STE_2021_AUST_GDA2020.json",
         "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
       },
-      "mark": {"type": "geoshape", "fill": "#cfe0aa", "stroke": "black", "strokeWidth": 0.5}
+      "mark": {"type": "geoshape", "fill": "#d9d9d9", "stroke": "black", "strokeWidth": 0.5}
     },
     {
       "data": {
