@@ -18,6 +18,7 @@
       padding: 20px;
       font-family: sans-serif;
       overflow-x: hidden;
+      background: #f5f5f5;
     }
 
     .header-container {
@@ -40,11 +41,12 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 20px 40px;
-      border-radius: 10px;
+      border-radius: 25px;
       text-align: center;
       max-width: 90%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .header-text h1 {
@@ -56,9 +58,10 @@
     .description-box {
       max-width: 1200px;
       margin: 30px auto;
-      background: #f9f9f9;
-      border-radius: 8px;
-      padding: 24px;
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .description-box p {
@@ -69,36 +72,69 @@
     }
 
     .dashboard-container {
-      max-width: 1600px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    .vis-container {
+    .viz-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      gap: 40px;
+    }
+
+    .viz-box {
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex: 1;
+    }
+
+    .text-box {
+      background: white;
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex: 0.8;
+    }
+
+    .text-box h2 {
+      margin-top: 0;
+      color: #333;
+      font-size: 1.5em;
+    }
+
+    .text-box p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 1.0em;
+    }
+
+    .viz-container {
       width: 100%;
       min-height: 400px;
-      margin-bottom: 30px;
-      padding: 10px;
-      box-sizing: border-box;
-      overflow: visible;
     }
     
-    .vis-container > div {
+    .viz-container > div {
       overflow: visible !important;
     }
 
-    .pure-u-1-2 {
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-    
-    .pure-g {
-      margin: 0 -10px;
+    #vis6.viz-container {
+      min-height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    @media (max-width: 768px) {
-      .pure-u-1-2 {
-        width: 100%;
+    @media (max-width: 968px) {
+      .viz-row {
+        flex-direction: column;
+      }
+
+      .viz-row.reverse {
+        flex-direction: column;
       }
       
       .header-text h1 {
@@ -114,9 +150,9 @@
     <div class="header-text">
       <h1>
         Comparing Melbourne's 
-        <span style="color:green;">Train</span> 
+        <span style="color:#268f4d;">Train</span> 
         and 
-        <span style="color:red;">Tram</span> 
+        <span style="color:#c21a17;">Tram</span> 
         Networks
       </h1>
     </div>
@@ -124,47 +160,90 @@
 
   <div class="description-box">
     <p>
-      Melbourne boasts a comprehensive public transport system, with both trams and trains playing major roles in connecting suburbs to the inner city and beyond. Trams are heavily used for short and medium distance travel within the inner city and surrounding suburbs, featuring frequent stops and integration with regular street traffic. Conversely, trains serve as Melbourne's backbone for long distance commuter travel, running on separate heavy rail tracks between dedicated stations spaced further apart, allowing for faster journeys over greater distances. This visualisation seeks to explore these differences between Melbourne's tram and train networks, highlighting the divide between inner/middle Melbourne and Melbourne's outer suburbs regarding public transport usage and availability.
+      Melbourne boasts a comprehensive public transport system, with both trams and trains playing major roles in connecting suburbs to the inner city and beyond. Trams are heavily used for short and medium distance travel within the inner city and surrounding suburbs, featuring frequent stops and integration with regular street traffic. Conversely, trains serve as Melbourne's backbone for long distance commuter travel, running on separate heavy rail tracks between dedicated stations spaced further apart, allowing for faster journeys over greater distances. This visualisation seeks to explore these differences between Melbourne's tram and train networks, whilst highlighting the divide between inner/middle Melbourne and Melbourne's outer suburbs regarding public transport usage and availability.
     </p>
   </div>
 
   <div class="dashboard-container">
-    <div class="pure-g">
-      <!-- Row 1 -->
-      <div class="pure-u-1-2">
-        <div id="vis1" class="vis-container"></div>
+    <!-- Row 1: Viz left, Text right -->
+    <div class="viz-row">
+      <div class="viz-box">
+        <div id="vis1" class="viz-container"></div>
       </div>
-      <div class="pure-u-1-2">
-        <div id="vis2" class="vis-container"></div>
-      </div>
-
-      <!-- Row 2 -->
-      <div class="pure-u-1-2">
-        <div id="vis3" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <div id="vis4" class="vis-container"></div>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="pure-u-1-2">
-        <div id="vis5" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <div id="vis6" class="vis-container"></div>
+      <div class="text-box">
+        <h2>Train Network Overview</h2>
+        <p>Melbourne's metropolitan train network provides extensive coverage across the city and suburbs, connecting commuters from outer areas to the CBD and beyond.</p>
       </div>
     </div>
-  </div>
+
+    <!-- Row 2: Text left, Viz right -->
+    <div class="viz-row reverse">
+      <div class="text-box">
+        <h2>Tram Network Overview</h2>
+        <p>The tram network forms the largest urban tramway network in the world, primarily serving inner Melbourne with dense coverage in the CBD and inner suburbs.</p>
+      </div>
+      <div class="viz-box">
+        <div id="vis2" class="viz-container"></div>
+      </div>
+    </div>
+
+    <!-- Row 3: Viz left, Text right -->
+    <div class="viz-row">
+      <div class="viz-box">
+        <div id="vis3" class="viz-container"></div>
+      </div>
+      <div class="text-box">
+        <h2>Train Patronage by Region</h2>
+        <p>Train patronage varies significantly across different local government areas, with higher usage in outer suburbs where trains are the primary public transport option.</p>
+      </div>
+    </div>
+
+    <!-- Row 4: Text left, Viz right -->
+    <div class="viz-row reverse">
+      <div class="text-box">
+        <h2>Tram Patronage by Region</h2>
+        <p>Tram usage is concentrated in inner Melbourne, with the highest patronage in areas with dense tram networks and shorter travel distances.</p>
+      </div>
+      <div class="viz-box">
+        <div id="vis4" class="viz-container"></div>
+      </div>
+    </div>
+
+    <!-- Row 5: Text left, Viz right -->
+    <div class="viz-row reverse">
+      <div class="viz-box">
+        <div id="vis5" class="viz-container"></div>
+      </div>
+      <div class="text-box">
+        <h2>Transport Mode Ratio</h2>
+        <p>The ratio of <span style="color:#c21a17;">tram</span> 
+        to
+        <span style="color:#268f4d;">train</span> usage reveals distinct patterns, showing how the outer areas rely more heavily on trains, whilst inner suburbs use both trams and trains.</p>
+        <div id="vis6" class="viz-container"></div>
+      </div>
+    </div>
+
+    <!-- Row 6: Viz left, Text right -->
+    <div class="viz-row">
+      <div class="text-box">
+        <h2>Limited Public Transport Options in the Growing Outer Suburbs</h2>
+        <p>This scatter plot comparison highlights the relationship between tram and train patronage across Melbourne, showing the divide between the inner and outer LGAs in terms of tram and train usage. Whilst the inner and middle LGAs have strong tram and train connections, only one outer area has a limited tram connection. Many of the residents of the outer areas are forced to rely on other, more infrequent forms of public transport, such as V/Line services or bus networks.</p>
+      </div>
+      <div class="viz-box">
+        <div id="vis7" class="viz-container"></div>
+      </div>
+    </div>
 
   <script type="text/javascript">
     const specs = [
-      "js/melbourne_metro_patronage.json",
-      "js/melbourne_tram_patronage.json",
-      "js/train_patronage_by_LGA.json",
-      "js/tram_patronage_by_LGA.json",
-      "js/ratio_patronage_by_LGA.json",
-      "js/scatterplot_tram_train.json"
-    ];
+    "js/melbourne_metro_patronage.json",
+    "js/melbourne_tram_patronage.json",
+    "js/train_patronage_by_LGA.json",
+    "js/tram_patronage_by_LGA.json",
+    "js/ratio_patronage_by_LGA.json",
+    "js/train_tram_pie.json",
+    "js/scatterplot_tram_train.json"
+  ];
 
     specs.forEach((spec, i) => {
       vegaEmbed('#vis' + (i + 1), spec, {
@@ -181,5 +260,4 @@
   </script>
 
 </body>
-
 </html>
