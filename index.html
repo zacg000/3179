@@ -171,16 +171,16 @@
         <div id="vis1" class="viz-container"></div>
       </div>
       <div class="text-box">
-        <h2>Train Network Overview</h2>
-        <p>Melbourne's metropolitan train network provides extensive coverage across the city and suburbs, connecting commuters from outer areas to the CBD and beyond.</p>
+        <h2>Melbourne's City Loop Dependent Train Network</h2>
+        <p>Melbourne's metropolitan train network provides extensive coverage between the city and suburbs. Melbourne’s metropolitan train system is unique in that it uses a City Loop connecting multiple lines through select CBD stations (Parliament, Flinders Street, Flagstaff, and Melbourne Central). The City Loop was constructed in the 1970s to alleviate congestion at Flinders Street, which served as Melbourne’s sole transport hub. Whilst it did alleviate congestion at Flinders Street, the City Loop still greatly prioritises travel to and from the CBD. This makes Melbourne’s Metro extremely monocentric, unlike other systems like the Tokyo, Shanghai or Seoul Metros, which have sprawling lines that converge at multiple different locations to balance their usage rates. Melbourne’s longstanding priority of the City Loop is likely attributed to its unique, extensive usage of trams, filling the gaps between the city train stations, allowing for shorter journeys within the city itself. Ultimately, Melbourne's train network is closer to being a suburban rail network than a fully fledged metropolitan train network with full separation from other traffic.</p>
       </div>
     </div>
 
     <!-- Row 2: Text left, Viz right -->
     <div class="viz-row reverse">
       <div class="text-box">
-        <h2>Tram Network Overview</h2>
-        <p>The tram network forms the largest urban tramway network in the world, primarily serving inner Melbourne with dense coverage in the CBD and inner suburbs.</p>
+        <h2>The Largest Tram Network in the World</h2>
+        <p>Melbourne's tram network has come a long way since the first horse-drawn trams were used in Fairfield in 1884. Melbourne's tram network now forms the largest urban tram network in the world with over 250km in track length, accounting for over a quarter of tram infrastructure in the entire Asia-Pacific region. It primarily serves the CBD and inner suburbs, including those not reached by the train network like Port Melbourne, St Kilda, and Kew. Much of the dark red on the map is attributed to Melbourne's free tram zone in the CBD, with the CBD serving as a crucial connection point not only for all tram lines, but also for the city train stations, and to a lesser extent, bus routes, which extend into the outer suburbs. As seen in the map, Melbourne's tram tracks are suited to Melbourne's grid plan, with long and straight tracks in all directions of the city, following main roads. </p>
       </div>
       <div class="viz-box">
         <div id="vis2" class="viz-container"></div>
@@ -193,16 +193,16 @@
         <div id="vis3" class="viz-container"></div>
       </div>
       <div class="text-box">
-        <h2>Train Patronage by Region</h2>
-        <p>Train patronage varies significantly across different local government areas, with higher usage in outer suburbs where trains are the primary public transport option.</p>
+        <h2>Train Patronage by Local Government Area (LGA)</h2>
+        <p>With the exception of Manningham, Melbourne’s train network technically serves every Local Government Area (LGA) in Greater Melbourne. Train patronage varies significantly across different local government areas, with higher usage in outer suburbs where trains are the primary public transport option. Despite this, many train stations operating V/Line services in Melbourne’s outer west and north like Tarneit, Wyndham Vale and Melton stations have greater annual train patronage than inner city stations. There are plans to eventually incorporate these stations into Melbourne’s metropolitan train network via electrification. Until then, passengers at these growing outer suburban stations must use the V/Line services with less capacity and service frequency, and no standing room on trains.</p>
       </div>
     </div>
 
     <!-- Row 4: Text left, Viz right -->
     <div class="viz-row reverse">
       <div class="text-box">
-        <h2>Tram Patronage by Region</h2>
-        <p>Tram usage is concentrated in inner Melbourne, with the highest patronage in areas with dense tram networks and shorter travel distances.</p>
+        <h2>Tram Patronage by Local Government Area (LGA)</h2>
+        <p>Tram usage is concentrated in inner Melbourne, with the highest patronage in areas with dense tram networks, short travel distances, and frequent services. These routes primarily serve residential and commercial areas close to the city, like main roads, where trams act as the main mode of public transport for short commutes, shopping trips, and daily travel. LGAs such as Yarra, Port Phillip, Stonnington and Merri-Bek record particularly high tram patronage due to their proximity to the CBD, mixed land use, and excellent service coverage. The convenience of the free tram zone and the close spacing of stops make trams an attractive option for inner-city travel, reducing reliance on cars, connecting seamlessly with train stations and bus routes. However, as tram routes rarely extend beyond the inner suburbs, their accessibility and usage drop sharply in Melbourne’s outer regions, where trains and buses dominate public transport use.</p>
       </div>
       <div class="viz-box">
         <div id="vis4" class="viz-container"></div>
@@ -218,7 +218,7 @@
         <h2>Transport Mode Ratio</h2>
         <p>The ratio of <span style="color:#c21a17;">tram</span> 
         to
-        <span style="color:#268f4d;">train</span> usage reveals distinct patterns, showing how the outer areas rely more heavily on trains, whilst inner suburbs use both trams and trains.</p>
+        <span style="color:#268f4d;">train</span> usage reveals how the outer areas rely more heavily on trains, whilst inner suburbs use both trams and trains. Whilst tram patronage is greater than train usage, tram journeys are shorter, on less track length, and confined to only the central areas of Melbourne.</p>
         <div id="vis6" class="viz-container"></div>
       </div>
     </div>
@@ -227,7 +227,7 @@
     <div class="viz-row">
       <div class="text-box">
         <h2>Limited Public Transport Options in the Growing Outer Suburbs</h2>
-        <p>This scatter plot comparison highlights the relationship between tram and train patronage across Melbourne, showing the divide between the inner and outer LGAs in terms of tram and train usage. Whilst the inner and middle LGAs have strong tram and train connections, only one outer area has a limited tram connection. Many of the residents of the outer areas are forced to rely on other, more infrequent forms of public transport, such as V/Line services or bus networks.</p>
+        <p>This scatter plot comparison highlights the relationship between tram and train patronage across Melbourne, showing the divide between the inner and outer LGAs in terms of tram and train usage. Whilst the inner and middle LGAs have strong tram and train connections, only one outer area has a limited tram connection. Many of the residents of the outer areas are forced to rely on other, more infrequent forms of public transport, such as V/Line services or bus networks. Ultimately, whilst Melbourne's City Loop and tram network increase accessibility into the CBD, many outer regions are excluded, and travel between regions is difficult without entering the city. </p>
       </div>
       <div class="viz-box">
         <div id="vis7" class="viz-container"></div>
@@ -258,6 +258,19 @@
       }).catch(console.error);
     });
   </script>
+
+   <p style="text-align:center; font-size:0.7em; color:#333; margin-top:40px; margin-bottom:10px;">
+    A visualisation by Zachary Gale. Data sourced from the Department of Transport: 
+    <a href="https://discover.data.vic.gov.au/dataset/annual-metropolitan-train-station-patronage-station-entries" 
+       style="text-decoration: underline; color: #436ebe;" target="_blank">
+       https://discover.data.vic.gov.au/dataset/annual-metropolitan-train-station-patronage-station-entries
+    </a> 
+    and Philip Mallis: 
+    <a href="https://philipmallis.com/2022/03/09/railway-station-and-tram-stop-patronage-in-victoria-for-2008-2021/" 
+       style="text-decoration: underline; color: #436ebe;" target="_blank">
+       https://philipmallis.com/2022/03/09/railway-station-and-tram-stop-patronage-in-victoria-for-2008-2021/
+    </a>
+  </p>
 
 </body>
 </html>
