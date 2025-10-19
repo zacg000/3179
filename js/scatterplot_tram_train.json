@@ -85,8 +85,8 @@
       },
 
       "encoding": {
-        "x": {"field": "Pax_annual", "type": "quantitative", "scale": {"type":"sqrt"}},
-        "y": {"field": "tram_total_patronage", "type": "quantitative", "scale": {"type":"sqrt"}},
+        "x": {"field": "Pax_annual", "type": "quantitative", "scale": {"type":"sqrt"}, "axis": {"format": "~s"}},
+        "y": {"field": "tram_total_patronage", "type": "quantitative", "scale": {"type":"sqrt"}, "axis": {"format": "~s"}},
         "text": {"value": "The City of Manningham is the only LGA\nin Greater Melbourne without either\na tram or train line. Despite long standing and\nunrealised plans for rail extensions into\nthe area, buses are currently the only form of\n public transport in Manningham."}
       }
     },

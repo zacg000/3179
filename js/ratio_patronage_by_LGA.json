@@ -35,14 +35,22 @@
             "key": "LGA_NAME",
             "fields": ["tram_to_train_ratio"]
           }
+        },
+        {
+          "calculate": "datum.properties.LGA_NAME === 'Manningham' ? 'NA (No Trams or Trains)' : format(datum.tram_to_train_ratio, '.2f')",
+          "as": "ratio_display"
         }
       ],
       "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 0.4},
       "encoding": {
         "color": {
-        "field": "tram_to_train_ratio",
-        "type": "quantitative",
-        "scale": {
+          "condition": {
+            "test": "datum.properties.LGA_NAME == 'Manningham'",
+            "value": "#d9d9d9"
+          },
+          "field": "tram_to_train_ratio",
+          "type": "quantitative",
+          "scale": {
             "type": "threshold",
             "domain": [0.25, 1, 1.5, 2, 5, 10],
             "range": [
@@ -52,10 +60,11 @@
               "#f46d43", 
               "#d73027",  
               "#a50026",  
-              "#67000d"  ]
+              "#67000d"
+            ]
           },
-        "title": "Usage of Trams per Train",
-        "legend": {
+          "title": "Usage of Trams per Train",
+          "legend": {
             "orient": "left",
             "labelAlign": "left",
             "titleAlign": "left"
@@ -63,7 +72,7 @@
         },
         "tooltip": [
           {"field": "properties.LGA_NAME", "title": "LGA"},
-          {"field": "tram_to_train_ratio", "title": "Tram to Train Usage Ratio"}
+          {"field": "ratio_display", "title": "Tram to Train Usage Ratio", "type": "nominal"}
         ]
       }
     },
@@ -72,9 +81,9 @@
         "values": [
           {
             "lat": -37.373501,
-            "lon": 145.55,
+            "lon": 145.5,
             "lat2": -37.373501,
-            "lon2": 145.66319
+            "lon2": 145.61319
           }
         ]
       },
@@ -87,12 +96,32 @@
       }
     },
     {
-      "data": {"values": [{"lat": -37.37, "lon": 145.605, "label": "10 km"}]},
+      "data": {"values": [{"lat": -37.37, "lon": 145.551, "label": "10 km"}]},
       "mark": {"type": "text", "align": "center", "baseline": "bottom"},
       "encoding": {
         "latitude": {"field": "lat"},
         "longitude": {"field": "lon"},
         "text": {"field": "label"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lat": -37.275,
+            "lon": 145.01
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "text": {"value": "Note: The City of Manningham has\nno trams or trains."}
       }
     },
     {

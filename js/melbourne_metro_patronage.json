@@ -57,13 +57,10 @@
     }
   ],
   "layer": [
-    {
-      "data": {
+    {"data": {
         "sphere": true
       },
-      "projection": {"type": "mercator"},
-      "mark": {"type": "geoshape", "fill": "#a3cdff"}
-    },
+      "mark": {"type": "geoshape", "fill": "#a3cdff"}},
     {
       "data": {
         "url": "https://raw.githubusercontent.com/zacg000/3179/refs/heads/main/js/STE_2021_AUST_GDA2020.json",
@@ -151,7 +148,7 @@
           {"field": "Pax_weekday", "title": "Weekday Patronage", "format": ","},
           {
             "field": "Pax_norm_weekday",
-            "title": "Non School Holiday Weekday Patronage",
+            "title": "School Weekday Patronage",
             "format": ","
           },
           {
